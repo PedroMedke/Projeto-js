@@ -19,3 +19,16 @@ export default (function () {
     return router;
 
 })();
+
+const express = require('express');
+const router = express.Router();
+
+const TodoApiController = require('../app/Controllers/TodoApiController');
+const ColaboradoresApiController = require('../app/Controllers/ColaboradoresApiController');
+
+
+router.get('/colaboradores', ColaboradoresApiController.list);
+router.get('/colaboradores/:id', ColaboradoresApiController.get);
+router.post('/colaboradores', ColaboradoresApiController.insert);
+
+module.exports = router;
