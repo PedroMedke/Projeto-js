@@ -21,18 +21,9 @@ export default (function () {
                 allowNull: false,
                 unique: true
             },
-            foto: {
-                type: DataTypes.STRING,
-                allowNull: true,
-                allowNull: true
-            },
             senha: {
                 type: DataTypes.STRING,
                 allowNull: false
-            },
-            id_role: {
-                type: DataTypes.INTEGER,
-                allowNull: true,
             },
             created_at: {
                 type: DataTypes.DATE,

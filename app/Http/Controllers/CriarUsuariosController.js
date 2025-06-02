@@ -7,8 +7,8 @@ export default async (request, response) => {
 
     // Mock data para os usuários
     const users = [
-        { nome: 'User1', email: 'user1@example.com', id_role: 2 },
-        { nome: 'User2', email: 'user2@example.com', id_role: 1 },
+        { nome: 'User1', email: 'user1@example.com' },
+        { nome: 'User2', email: 'user2@example.com' },
     ];
 
 
