@@ -19,10 +19,7 @@ export default async (request, response) => {
             {
                 where: {
                     email: email
-                },
-                include: [
-                    "role"
-                ]
+                }
             }
         );
 
@@ -41,8 +38,7 @@ export default async (request, response) => {
         const payload = {
             sub: userModel.id,
             email: userModel.email,
-            nome: userModel.nome,
-            roles: userModel.role.nome
+            nome: userModel.nome
         };
 
         const token = jwt.sign(payload, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });

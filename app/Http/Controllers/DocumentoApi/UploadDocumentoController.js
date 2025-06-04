@@ -6,7 +6,7 @@ import DocumentoModel from "../../../Models/DocumentoModel.js";
 //express file-upload
 export default async (request, response) => {
 
-    const arquivo = request.files.image;
+    const arquivo = request.files.documento;
     const idUser = request.user.id;
 
     /** CODAR AQUI */
