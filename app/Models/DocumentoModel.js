@@ -12,7 +12,7 @@ export default (function () {
                 primaryKey: true,
                 allowNull: false
             },
-            documento: {
+            caminho: {
                 type: DataTypes.STRING,
                 allowNull: false
             },

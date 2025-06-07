@@ -1,4 +1,3 @@
-import UserModel from "../../../Models/UserModel.js";
 import DocumentoModel from "../../../Models/DocumentoModel.js";
 
 //POST /api/documentos/upload
@@ -9,11 +8,14 @@ export default async (request, response) => {
     const arquivo = request.files.documento;
     const idUser = request.user.id;
 
-    /** CODAR AQUI */
+
+    /** Codar AQUI */
+
 
     return response
         .json({
             mensagem: 'Imagem enviada com sucesso!',
+            image: newName
         });
 
 

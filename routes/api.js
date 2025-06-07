@@ -1,13 +1,13 @@
 import { Router } from 'express';
 
-import usersApi from './api/documentosApi.js';
+import documentosApi from './api/documentosApi.js';
 
 export default (function () {
 
     const router = Router();
 
-    //Users
-    router.use("/", usersApi);
+    //documentos
+    router.use("/", documentosApi);
 
     return router;
 
