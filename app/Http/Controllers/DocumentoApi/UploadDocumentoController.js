@@ -1,22 +1,37 @@
-import DocumentoModel from "../../../Models/DocumentoModel.js";
+const fs = require('fs');
+const path = require('path');
+const { Documento } = require('../../../Model');
 
-//POST /api/documentos/upload
-//multiform data
-//express file-upload
-export default async (request, response) => {
+const UploadDocumentoController = async (req, res) => {
+  try {
+    const user = req.user; // vindo do JwtAuthMiddleware
+    const file = req.file;
 
-    const arquivo = request.files.documento;
-    const idUser = request.user.id;
+    if (!file) {
+      return res.status(400).json({ error: 'Arquivo não enviado.' });
+    }
 
+    const storagePath = path.join(__dirname, '../../../../storage/documents');
+    if (!fs.existsSync(storagePath)) {
+      fs.mkdirSync(storagePath, { recursive: true });
+    }
 
-    /** Codar AQUI */
+    const filePath = path.join(storagePath, file.originalname);
 
+    // Salva o arquivo no sistema de arquivos
+    fs.writeFileSync(filePath, file.buffer);
 
-    return response
-        .json({
-            mensagem: 'Imagem enviada com sucesso!',
-            image: newName
-        });
+    // Cria o registro no banco de dados
+    const documento = await Documento.create({
+      caminho: file.originalname,
+      id_user: user.id,
+    });
 
+    return res.status(201).json({ message: 'Upload realizado com sucesso.', documento });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'Erro no upload do documento.' });
+  }
+};
 
-}
+module.exports = UploadDocumentoController;

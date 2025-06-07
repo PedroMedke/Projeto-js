@@ -1,14 +1,17 @@
-import path from 'path';
+const path = require('path');
 
-export default (request, response, next) => {
+module.exports = (req, res, next) => {
+  const file = req.file;
 
-    if (!request.files || !request.files.documento) {
-        return response.status(CONSTANTS.HTTP.BAD_REQUEST)
-            .json({ error: 'Arquivo não enviado' });
-    }
+  if (!file) {
+    return res.status(400).json({ error: 'Nenhum arquivo enviado.' });
+  }
 
-    /** CODAR AQUI */
+  const ext = path.extname(file.originalname).toLowerCase();
 
-    next();
+  if (ext !== '.pdf') {
+    return res.status(400).json({ error: 'Apenas arquivos PDF são permitidos.' });
+  }
 
-}
+  next();
+};
